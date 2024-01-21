@@ -4,7 +4,7 @@ Teste prático para o processo seletivo da Onfly - Projeto Controle de Despesas
 ## Introdução
 
 Este é o nosso case técnico! A ideia é que você possa mostrar toda sua expertise técnica através dele!
-Estamos animados para te ver brilha!
+Estamos animados para te ver brilhar!
 
 [SPOILER] As instruções de entrega e apresentação do challenge estão no final deste Readme (=
 
