@@ -64,3 +64,21 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Diário de Bordo
+
+- Inserção da extensão .log no '.gitignore'.
+- Inserção do arquivo .phpunit.result.cache no '.gitignore'.
+- Inserção do caminho Src/Core no autoload dentro do composer.json
+
+Após inicializar o projeto, comecei pela construção das entidades a fim de implementar as regras de negócio do sistema de maneira desacoplada do framework.
+
+Criado o primeiro teste unitário para a entidade "Expense", e para classe correspondente, inseri os métodos mágicos dentro de uma trait pensando em possíveis reaproveitamentos no futuro.
+
+Na trait, optei por estourar uma exception personalizada a fim de obter mais controle sobre os processos.
+
+Criação da camada de repository.
+
+- Finalizada a construção das entidades, iniciei a construção dos casos de uso.
+
+
