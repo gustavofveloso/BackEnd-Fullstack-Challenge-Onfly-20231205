@@ -40,7 +40,7 @@ class Expense
         $this->validate();
     }
 
-    public function validate()
+    private function validate()
     {
         DomainValidation::strCanNullAndMaxLength($this->description);
         DomainValidation::strMinLength($this->description);

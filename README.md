@@ -89,11 +89,6 @@ Avisar sobre a finalização e enviar para correção.
 
 Use o nosso canal no slack: http://bit.ly/32CuOMy para tirar dúvidas sobre o processo ou envie um e-mail para contato@coodesh.com.
 
-
-
-<<<<<<< HEAD
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
 ## Diário de Bordo
 
 - Inserção da extensão .log no '.gitignore'.
@@ -110,6 +105,4 @@ Criação da camada de repository.
 
 - Finalizada a construção das entidades, iniciei a construção dos casos de uso.
 
-
-=======
->>>>>>> b30905585cdf66329b33383864c33c2d9ab99c3b
+Resolvi dar uma pausa na construção dos testes e focar na implementação das funcionalidades para poder garantir a entrega.
