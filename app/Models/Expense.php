@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Notifications\ExpenseCreatedNotification;
 
 class Expense extends Model
 {
@@ -15,6 +16,15 @@ class Expense extends Model
         'date',
         'value',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($expense) {
+            $expense->user->notify(new ExpenseCreatedNotification($expense));
+        });
+    }
 
     /**
      * Get the user that owns the expense.
