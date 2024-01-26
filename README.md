@@ -32,9 +32,11 @@ Para rodarmos os testes, iremos executar o comando:
 ./vendor/bin/sail test
 ```
 
-Para checarmos o horizon, a url é: [http://localhost/horizon].
-Para conferirmos o swagger, [http://localhost/api/documentation]
-Para acessarmos o mailpit, [http://localhost:8025]
+(Para checarmos o horizon, a url é:)[http://localhost/horizon].
+<br />
+(Para conferirmos o swagger, )[http://localhost/api/documentation]
+<br />
+(Para acessarmos o mailpit, )[http://localhost:8025]
 
 ## Diário de Bordo
 
