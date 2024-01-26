@@ -16,10 +16,23 @@ Descrição: API do projeto Gestão de Despesas, teste prático do processo sele
 
 Realize o clone do repositório.
 Para começar, é necessário ter o serviço do Docker rodando na máquina.
-Após startar o docker, crie o arquivo .env com as informações contidas em .env.example.
-Em seguida, execute o comando:
+Em seguida, certifique-se que você tenha o PHP 8.2+ e o Composer instalado também, caso não tenha, execute os comandos:
 ```
+sudo apt install php8.2 -y
+sudo apt-get install -y php8.2-cli php8.2-common php8.2-fpm php8.2-mysql php8.2-zip php8.2-gd php8.2-mbstring php8.2-curl php8.2-xml php8.2-bcmath
+```
+Após startar o docker, crie o arquivo .env com as informações contidas em .env.example.
+Em seguida, execute os comandos:
+```
+composer require laravel/sail --dev
 ./vendor/bin/sail up -d
+./vendor/bin/sail artisan key:generate
+./vendor/bin/sail artisan migrate
+```
+Caso apareça um erro do tipo: "./.env: line 6: $'\r': command not found" execute os comandos:
+```
+dos2unix .env
+tr -d '\r' < .env > .env.fixed && mv .env.fixed .env
 ```
 Por padrão, os comandos Sail são invocados usando o script "./vendor/bin/sail" que está incluso nas aplicações laravel. Porém, podemos adicionar o seguinte apelido conforme o código abaixo a fim de tornar esta tarefa menos repetitiva, contudo, seguiremos neste passo a passo utilizando o comando default.
 ```
