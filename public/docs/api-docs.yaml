@@ -1,0 +1,321 @@
+openapi: 3.0.0
+info:
+  title: 'Swagger Expense Management'
+  description: "Part of the practical project for the Onfly selection process."
+  contact:
+    email: gustavofveloso@gmail.com
+  version: 1.0.0
+paths:
+  /expenses:
+    get:
+      tags:
+        - expenses
+      summary: 'Returns a list of expenses'
+      description: 'Returns a list of expenses'
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+      security:
+        -
+          api_key: []
+    post:
+      tags:
+        - expenses
+      summary: 'Create a new expense'
+      requestBody:
+        description: 'create a new expense'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Expense'
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Expense'
+    put:
+      tags:
+        - expenses
+      summary: 'Update an existing expense'
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'id that to be updated'
+          required: true
+          schema:
+            type: int
+      requestBody:
+        description: 'Updated expense object'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Expense'
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Expense'
+        '404':
+          description: 'Order not found'
+  '/expenses/{expensesId}':
+    get:
+      tags:
+        - expenses
+      summary: Get a single expense by ID
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of expense that needs to be fetched'
+          required: true
+          schema:
+            type: int
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Expense'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+        '404':
+          description: 'Expense not found'
+    delete:
+      tags:
+        - expenses
+      summary: 'Delete an expense by ID'
+      description: 'For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors'
+      operationId: id
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of the expense that needs to be deleted'
+          required: true
+          schema:
+            type: integer
+            format: int64
+            minimum: 1
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Expense'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+        '404':
+          description: 'Expense not found'
+  /register:
+    post:
+      tags:
+        - user
+      summary: 'Register an user'
+      description: 'Register an user.'
+      requestBody:
+        description: 'Create user object'
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        default:
+          description: 'successful operation'
+  /login:
+    post:
+      tags:
+        - user
+      summary: 'Logs user into system'
+      parameters:
+        -
+          name: username
+          in: query
+          description: 'The user name for login'
+          required: true
+          schema:
+            type: string
+        -
+          name: password
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: 'Invalid username/password supplied'
+  /logout:
+    post:
+      tags:
+        - user
+      summary: 'Logs out current logged in user session'
+      operationId: logoutUser
+      responses:
+        default:
+          description: 'successful operation'
+  /user:
+    get:
+      tags:
+        - user
+      summary: 'Returns the logged user'
+      description: 'Returns the logged user'
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expense'
+      security:
+        -
+          api_key: []
+components:
+  schemas:
+    ApiResponse:
+      title: 'Api response'
+      description: 'Api response'
+      properties:
+        code:
+          title: Code
+          description: Code
+          type: integer
+          format: int32
+        message:
+          title: Message
+          description: Message
+          type: string
+      type: object
+    Expense:
+      title: 'Expenses'
+      description: 'Expenses'
+      properties:
+        id:
+          title: ID
+          description: ID
+          type: integer
+          format: bigint
+        user_id:
+          title: USER ID
+          description: USER ID FK
+          type: integer
+          format: bigint
+        description:
+          title: DESCRIPTION
+          description: DESCRIPTION
+          type: string
+        date:
+          title: DATE
+          description: DATE (YYYY-MM-DD)
+          type: string
+          format: date
+        value:
+          title: VALUE
+          description: VALUE (up to 2 decimal places)
+          type: number
+          format: float
+    
+      type: object
+      xml:
+        name: Pet
+    User:
+      title: 'User model'
+      description: 'User model'
+      properties:
+        id:
+          title: ID
+          description: ID
+          type: integer
+          format: int64
+        username:
+          title: Username
+          description: Username
+          type: string
+        firstName:
+          title: 'First name'
+          description: 'First name'
+          type: string
+        lastName:
+          title: 'Last name'
+          description: 'Last name'
+          type: string
+        email:
+          title: Email
+          description: Email
+          type: string
+          format: email
+        password:
+          title: Password
+          description: Password
+          type: string
+          format: int64
+          maximum: 255
+        phone:
+          title: Phone
+          description: Phone
+          type: string
+          format: msisdn
+        userStatus:
+          title: 'User status'
+          description: 'User status'
+          type: integer
+          format: int32
+      type: object
+  requestBodies:
+    Pet:
+      description: 'Pet object that needs to be added to the store'
+      required: true
+      content:
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Pet'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Pet'
+    UserArray:
+      description: 'List of user object'
+      required: true
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/User'
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
+tags:
+  -
+    name: expenses
+    description: 'Operations about expense'
+  -
+    name: user
+    description: 'Operations about user'

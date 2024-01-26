@@ -43,7 +43,7 @@ class ExpenseCreatedNotification extends Notification
             ->line('Uma nova despesa foi cadastrada.')
             ->line('Descrição: ' . $this->expense->description)
             ->line('Valor: ' . $this->expense->value)
-            ->line('Data: ' . $this->expense->date->format('d/m/Y'))
+            ->line('Data: ' . $this->expense->date)
             ->action('Ver despesa', url('/expenses/' . $this->expense->id))
             ->line('Obrigado por usar nosso sistema!');
     }

@@ -12,8 +12,22 @@ class ExpenseController extends Controller
     public function index()
     {
         $this->authorize('viewAny', Expense::class);
-        $expenses = Expense::where('user_id', auth()->id())->get();
-        return response()->json(['expenses' => $expenses], 200);
+        $perPage = request()->input('per_page', 10);
+        $expenses = Expense::where('user_id', auth()->id())->paginate($perPage);
+    
+        $response = [
+            'data' => $expenses->items(),
+            'meta' => [
+                'current_page' => $expenses->currentPage(),
+                'from' => $expenses->firstItem(),
+                'last_page' => $expenses->lastPage(),
+                'per_page' => $expenses->perPage(),
+                'to' => $expenses->lastItem(),
+                'total' => $expenses->total(),
+            ]
+        ];
+    
+        return response()->json($response, 200);
     }
 
     public function store(ExpenseRequest $request)
